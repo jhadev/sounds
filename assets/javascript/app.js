@@ -1,10 +1,10 @@
-const path = "assets/clips/";
+const path = "assets/sounds/";
 
 //DECLARE ARRAY
 const items = [];
 
-//CLASS TO LAYOUT CLIP OBJECTS
-class Clip {
+//CLASS TO LAYOUT SOUND OBJECTS
+class Sound {
   constructor(id, displayName, name, character, audio) {
     this.id = id;
     this.displayName = displayName;
@@ -14,10 +14,10 @@ class Clip {
   }
 }
 
-//DECLARE NEW CLIP CONSTRUCTORS
+//DECLARE NEW SOUND CONSTRUCTORS
 
 //example
-const clip1 = new Clip(
+const sound1 = new Sound(
   1,
   "Respect", //display name on button
   "respect", //name of file must match mp3 filename
@@ -26,7 +26,7 @@ const clip1 = new Clip(
 )
 //PUSH INTO ARRAY
 
-items.push(clip1)
+items.push(sound1)
 
 //COMPARE FUNCTION FOR SORT
 const compare = (a, b) => {
@@ -44,7 +44,7 @@ const sortById = (a, b) => {
 //SORT
 items.sort(compare);
 
-//PLAY RANDOM CLIP FUNCTION
+//PLAY RANDOM FUNCTION
 const random = () => {
   const item = items[Math.floor(Math.random() * items.length)].audio;
   item.play();
@@ -112,24 +112,24 @@ const layout = array => {
 
 layout(items);
 
-//CLICK FUNCTION TO PLAY CLIPS
+//CLICK FUNCTION TO PLAY
 $(document).on("click", ".play", event => {
   event.preventDefault();
-  playClip(event);
+  playSound(event);
 });
 
-//CLICK FUNCTION TO PAUSE CLIPS
+//CLICK FUNCTION TO PAUSE
 $(document).on("click", ".stop", event => {
   event.preventDefault();
-  stopClip(event);
+  stopSound(event);
 });
 
 //CLICK FUNCTION TO SORT DOM
 $(document).on("click", ".sort", event => {
   event.preventDefault();
-  sortAllClips( /*num*/ );
+  sortAllSounds( /*num*/ );
 });
-//CLICK FUNCTION FOR RANDOM CLIP
+//CLICK FUNCTION FOR RANDOM
 $(document).on("click", ".random", event => {
   event.preventDefault();
   random();
@@ -215,7 +215,7 @@ const filterByCharacter = event => {
 };
 
 //BUGGY SORT FUNC
-const sortAllClips = num => {
+const sortAllSounds = num => {
   const sortItems = [...items];
   if (items[0].id < num) {
     items.sort(sortById);
@@ -231,16 +231,16 @@ const sortAllClips = num => {
 };
 
 //STOP FUNC
-const stopClip = event => {
+const stopSound = event => {
   $(event.target).addClass("pulse fast");
   const {
     value
   } = event.target;
-  items.forEach(clip => {
+  items.forEach(sound => {
     const {
       name,
       audio
-    } = clip;
+    } = sound;
     if (name === value) {
       audio.pause();
     }
@@ -251,16 +251,16 @@ const stopClip = event => {
 };
 
 //PLAY FUNC
-const playClip = event => {
+const playSound = event => {
   $(event.target).addClass("pulse fast");
   const {
     value
   } = event.target;
-  items.forEach(clip => {
+  items.forEach(sound => {
     const {
       name,
       audio
-    } = clip;
+    } = sound;
     if (name === value) {
       audio.play();
     } else {
