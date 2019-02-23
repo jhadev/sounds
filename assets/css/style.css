@@ -1,0 +1,78 @@
+button {
+  margin-bottom: 10px;
+  margin-right: 0px;
+  cursor: pointer;
+}
+
+.sticky-footer {
+  padding: 10px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.name {
+  font-size: 14px !important;
+}
+
+.extra,
+.link {
+  font-size: 14px !important;
+}
+
+.drop {
+  font-size: 16px !important;
+}
+
+.card {
+  text-align: center;
+}
+
+.card-body {
+  display: inline-block;
+  text-align: center;
+}
+
+.card-header {
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.play {
+  margin-right: 5px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.icon-large {
+  font-size: 24px;
+}
+
+#new {
+  font-style: italic;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.spacer {
+  flex: 1;
+}
+
+@media screen and (max-width: 532px) {
+  .company {
+    text-align: center;
+    font-weight: bold;
+    font-size: 28px;
+  }
+
+  .navbar {
+    margin-bottom: 20px !important;
+  }
+}
