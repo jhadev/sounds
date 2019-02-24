@@ -1,4 +1,4 @@
-const path = "assets/sounds/";
+const path = "assets/sounds/"; //path to mp3 files
 
 //DECLARE ARRAY
 const items = [];
@@ -18,11 +18,11 @@ class Sound {
 
 //example
 const sound1 = new Sound(
-  1,
-  "Respect", //display name on button
+  1, //id
+  "Respect", //string to display on button
   "respect", //name of file must match mp3 filename
-  "Cartman", //character to write to header
-  new Audio(`${path}respect.mp3`) //audio file
+  "Cartman", //character name to write to header
+  new Audio(`${path}respect.mp3`) //audio file in sounds folder
 );
 
 const sound2 = new Sound(
@@ -58,6 +58,7 @@ const random = () => {
   item.play();
 };
 
+//func to capitalize first letter of displayName property of Sound object
 const capitalizeFirst = string => {
   return string[0].toUpperCase() + string.slice(1);
 };
@@ -200,6 +201,7 @@ const filterByCharacter = event => {
       item.character != "Character 3" &&
       item.character != "Character 4"
   );
+  //match character names with navbar badge HTML for filtering. "Other" will auto match with characters not matched with these ids.
   $(".start").empty();
   if (id == "Other") {
     otherArray.sort(compare);
