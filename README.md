@@ -18,15 +18,15 @@ Add your mp3 files to that folder.
 Navigate to the assets/javascript folder and open 'app.js' in your code editor.
 On line 7 you will see the class blueprint to layout your sound objects.
 
-_id_ = number - The id of your sound. Go in order.
+**_id_** = number - The id of your sound. Go in order.
 
-_displayName_ = string - The name you want displayed on the button to play your sound.
+**_displayName_** = string - The name you want displayed on the button to play your sound.
 
 _name_ = string - The HTML value attribute that will be added to the button. **THIS MUST MATCH YOUR FILENAME**
 
-_character_ = string - The name of the character to be displayed on the header ex: If this was a South Park soundboard we can say "Cartman".
+**_character_** = string - The name of the character to be displayed on the header ex: If this was a South Park soundboard we can say "Cartman".
 
-_audio_ = uses the javascript new Audio constructor for our mp3 file. Takes one argument which is the path our mp3 file.
+**_audio_** = uses the javascript new Audio constructor for our mp3 file. Takes one argument which is the path our mp3 file.
 
 Start by declaring new Sounds. In our example we use South Park.
 
@@ -39,7 +39,8 @@ Start by declaring new Sounds. In our example we use South Park.
     );
 
 Next we push all the sounds into our items array.
-items.push(sound1, sound2, sound3)
+
+    items.push(sound1, sound2, sound3)
 
 ## Step 3
 
@@ -62,7 +63,7 @@ These are used to filter the DOM by specific characters relevant to your soundbo
       </button>
     </li>
 
-Repeat this step for the rest of the navbar items. The nav-item button named "Other" will take care of filtering for characters that aren't specificed in the 4 nav-items avaiable.
+Repeat this step for the rest of the navbar items. The nav-item button named "Other" will take care of filtering for characters that aren't specificed in the 4 nav-items available.
 
 ## Step 4
 
