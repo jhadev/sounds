@@ -23,10 +23,10 @@ const sound1 = new Sound(
   "respect", //name of file must match mp3 filename
   "Cartman", //character to write to header
   new Audio(`${path}respect.mp3`) //audio file
-)
+);
 //PUSH INTO ARRAY
 
-items.push(sound1)
+items.push(sound1);
 
 //COMPARE FUNCTION FOR SORT
 const compare = (a, b) => {
@@ -50,7 +50,6 @@ const random = () => {
   item.play();
 };
 
-
 const capitalizeFirst = string => {
   return string[0].toUpperCase() + string.slice(1);
 };
@@ -58,21 +57,16 @@ const capitalizeFirst = string => {
 //PRINT HTML
 const layout = array => {
   array.forEach(item => {
-    const {
-      id,
-      name,
-      displayName,
-      character
-    } = item;
+    const { id, name, displayName, character } = item;
     const columnDiv = $("<div>").addClass("col-lg-3 col-md-4 col-12");
     const cardDiv = $("<div>");
     cardDiv.addClass("card shadow m-2").appendTo(columnDiv);
     const cardHeader = $("<div>");
-    id > 0 ?
-      cardHeader.html(
-        `${character} <div id="new" class="ml-1 badge badge-pill badge-warning">NEW</div>`
-      ) :
-      cardHeader.text(character);
+    id > array.length - 12
+      ? cardHeader.html(
+          `${character} <div id="new" class="ml-1 badge badge-pill badge-warning">NEW</div>`
+        )
+      : cardHeader.text(character);
     cardHeader.addClass("card-header").appendTo(cardDiv);
     const cardBody = $("<div>");
     cardBody.addClass("card-body").appendTo(cardDiv);
@@ -123,7 +117,7 @@ $(document).on("click", ".stop", event => {
 //CLICK FUNCTION TO SORT DOM
 $(document).on("click", ".sort", event => {
   event.preventDefault();
-  sortAllSounds( /*num*/ );
+  sortAllSounds(/*num*/);
 });
 //CLICK FUNCTION FOR RANDOM
 $(document).on("click", ".random", event => {
@@ -187,18 +181,16 @@ const checkTheme = () => {
 //REBUILD DOM BY CHARACTER
 
 const filterByCharacter = event => {
-  const {
-    id
-  } = event.target;
+  const { id } = event.target;
   const itemsClone = [...items];
   const filteredArray = itemsClone.filter(item => id == item.character);
   const otherArray = itemsClone.filter(
     item =>
-    id == "Other" &&
-    item.character != "Character 1" &&
-    item.character != "Character 2" &&
-    item.character != "Character 3" &&
-    item.character != "Character 4"
+      id == "Other" &&
+      item.character != "Character 1" &&
+      item.character != "Character 2" &&
+      item.character != "Character 3" &&
+      item.character != "Character 4"
   );
   $(".start").empty();
   if (id == "Other") {
@@ -211,14 +203,14 @@ const filterByCharacter = event => {
 };
 
 //BUGGY SORT FUNC
-const sortAllSounds = num => {
+const sortAllSounds = () => {
   const sortItems = [...items];
-  if (items[0].id < num) {
+  if (items[0].id < items.length - 1) {
     items.sort(sortById);
     $(".start").empty();
     layout(items);
     $(".sort").text("Show All by Name");
-  } else if (items[0].id >= num) {
+  } else if (items[0].id >= items.length - 1) {
     items.sort(compare);
     $(".start").empty();
     layout(items);
@@ -229,14 +221,9 @@ const sortAllSounds = num => {
 //STOP FUNC
 const stopSound = event => {
   $(event.target).addClass("pulse fast");
-  const {
-    value
-  } = event.target;
+  const { value } = event.target;
   items.forEach(sound => {
-    const {
-      name,
-      audio
-    } = sound;
+    const { name, audio } = sound;
     if (name === value) {
       audio.pause();
     }
@@ -249,14 +236,9 @@ const stopSound = event => {
 //PLAY FUNC
 const playSound = event => {
   $(event.target).addClass("pulse fast");
-  const {
-    value
-  } = event.target;
+  const { value } = event.target;
   items.forEach(sound => {
-    const {
-      name,
-      audio
-    } = sound;
+    const { name, audio } = sound;
     if (name === value) {
       audio.play();
     } else {
