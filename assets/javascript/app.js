@@ -24,14 +24,22 @@ const sound1 = new Sound(
   "Cartman", //character to write to header
   new Audio(`${path}respect.mp3`) //audio file
 );
+
+const sound2 = new Sound(
+  2,
+  "Killed Kenny", //display name on button
+  "killed", //name of file must match mp3 filename
+  "Stan", //character to write to header
+  new Audio(`${path}killed.mp3`) //audio file
+);
 //PUSH INTO ARRAY
 
-items.push(sound1);
+items.push(sound1, sound2);
 
 //COMPARE FUNCTION FOR SORT
 const compare = (a, b) => {
-  if (a.character < b.character) return 1;
-  if (a.character > b.character) return -1;
+  if (a.character > b.character) return 1;
+  if (a.character < b.character) return -1;
   return 0;
 };
 
@@ -58,7 +66,7 @@ const capitalizeFirst = string => {
 const layout = array => {
   array.forEach(item => {
     const { id, name, displayName, character } = item;
-    const columnDiv = $("<div>").addClass("col-lg-3 col-md-4 col-12");
+    const columnDiv = $("<div>").addClass("col-lg-4 col-md-6 col-12");
     const cardDiv = $("<div>");
     cardDiv.addClass("card shadow m-2").appendTo(columnDiv);
     const cardHeader = $("<div>");
@@ -205,12 +213,12 @@ const filterByCharacter = event => {
 //BUGGY SORT FUNC
 const sortAllSounds = () => {
   const sortItems = [...items];
-  if (items[0].id < items.length - 1) {
+  if (items[0].id < items.length) {
     items.sort(sortById);
     $(".start").empty();
     layout(items);
     $(".sort").text("Show All by Name");
-  } else if (items[0].id >= items.length - 1) {
+  } else if (items[0].id >= items.length) {
     items.sort(compare);
     $(".start").empty();
     layout(items);
