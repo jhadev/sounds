@@ -127,4 +127,4 @@ Using the South Park example when you are done that part of the function should 
 
 ---
 
-Repeat Steps 1 and 2 every time you add more sounds (without cloning the repo of course). Test everything out and enjoy. It is mobile responsive and includes a dark theme. By default the page is loaded sorting the sounds in alphabetical order by character name. You can also sort by newest sound added and play a random sound. I'm sure theres is a bug. Or 2 or 3, but it does work.
+Repeat Steps 1 and 2 every time you add more sounds (without cloning the repo of course). Test everything out and enjoy. It is mobile responsive and includes a dark theme. By default the page is loaded sorting the sounds in alphabetical order by character name. You can also sort by newest sound added and play a random sound. I'm sure theres is a bug. Or 2 or 3, but it does work. Enjoy!

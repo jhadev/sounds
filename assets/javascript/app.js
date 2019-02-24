@@ -32,12 +32,13 @@ const sound2 = new Sound(
   "Stan", //character to write to header
   new Audio(`${path}killed.mp3`) //audio file
 );
+
 //PUSH INTO ARRAY
 
 items.push(sound1, sound2);
 
-//COMPARE FUNCTION FOR SORT
-const compare = (a, b) => {
+//FUNCTIONS FOR SORTING
+const sortByCharacter = (a, b) => {
   if (a.character > b.character) return 1;
   if (a.character < b.character) return -1;
   return 0;
@@ -50,7 +51,7 @@ const sortById = (a, b) => {
 };
 
 //SORT
-items.sort(compare);
+items.sort(sortByCharacter);
 
 //PLAY RANDOM FUNCTION
 const random = () => {
@@ -71,7 +72,7 @@ const layout = array => {
     const cardDiv = $("<div>");
     cardDiv.addClass("card shadow m-2").appendTo(columnDiv);
     const cardHeader = $("<div>");
-    id > array.length - 12
+    id >= array.length - 10
       ? cardHeader.html(
           `${character} <div id="new" class="ml-1 badge badge-pill badge-warning">NEW</div>`
         )
@@ -124,10 +125,16 @@ $(document).on("click", ".stop", event => {
 });
 
 //CLICK FUNCTION TO SORT DOM
-$(document).on("click", ".sort", event => {
+$(document).on("click", ".sort-by-new", event => {
   event.preventDefault();
-  sortAllSounds(/*num*/);
+  sortByNew();
 });
+
+$(document).on("click", ".sort-by-name", event => {
+  event.preventDefault();
+  sortByName();
+});
+
 //CLICK FUNCTION FOR RANDOM
 $(document).on("click", ".random", event => {
   event.preventDefault();
@@ -147,46 +154,6 @@ $(document).on("click", ".theme", event => {
   checkTheme();
 });
 
-//THEME FUNCTION
-const checkTheme = () => {
-  if ($("body").hasClass("bg-light")) {
-    $("body, .card, .dropdown-menu").removeClass("bg-light");
-    $(".navbar-brand, .card-header").removeClass("text-dark");
-    $(".navbar").removeClass(`bg-light navbar-light`);
-    $(".name").removeClass("badge-secondary");
-    $(".theme").removeClass("badge-dark");
-    $(".extra").removeClass(`badge-light text-dark`);
-
-    //
-    $("body, .dropdown-menu").addClass("bg-dark");
-    $(".navbar-brand, .card-header").addClass("text-light");
-    $(".navbar").addClass(`navbar-dark bg-dark`);
-    $(".card").addClass(`bg-dark border-light`);
-    $(".theme").text("Light");
-    $(".theme, .name").addClass("badge-light");
-    $(".extra").addClass(`badge-dark text-light`);
-
-    //
-  } else if ($("body").hasClass("bg-dark")) {
-    $("body, .dropdown-menu").removeClass("bg-dark");
-    $(".navbar-brand, .card-header").removeClass("text-light");
-    $(".navbar").removeClass(`bg-dark navbar-dark`);
-    $(".card").removeClass(`bg-dark border-light`);
-    $(".theme, .name").removeClass("badge-light");
-    $(".extra").removeClass(`badge-dark text-light`);
-
-    //
-    $("body, .dropdown-menu").addClass("bg-light");
-    $(".navbar-brand, .card-header").addClass("text-dark");
-    $(".navbar").addClass(`bg-light navbar-light`);
-    $(".theme")
-      .text("Dark")
-      .addClass("badge-dark");
-    $(".name").addClass("badge-secondary");
-    $(".extra").addClass(`badge-light text-dark`);
-  }
-};
-
 //REBUILD DOM BY CHARACTER
 
 const filterByCharacter = event => {
@@ -204,7 +171,7 @@ const filterByCharacter = event => {
   //match character names with navbar badge HTML for filtering. "Other" will auto match with characters not matched with these ids.
   $(".start").empty();
   if (id == "Other") {
-    otherArray.sort(compare);
+    otherArray.sort(sortByCharacter);
     layout(otherArray);
   } else {
     filteredArray.sort(sortById);
@@ -212,20 +179,17 @@ const filterByCharacter = event => {
   }
 };
 
-//BUGGY SORT FUNC
-const sortAllSounds = () => {
-  const sortItems = [...items];
-  if (items[0].id < items.length) {
-    items.sort(sortById);
-    $(".start").empty();
-    layout(items);
-    $(".sort").text("Show All by Name");
-  } else if (items[0].id >= items.length) {
-    items.sort(compare);
-    $(".start").empty();
-    layout(items);
-    $(".sort").text("Show All By New");
-  }
+//SORT FUNCs
+const sortByName = () => {
+  items.sort(sortByCharacter);
+  $(".start").empty();
+  layout(items);
+};
+
+const sortByNew = () => {
+  items.sort(sortById);
+  $(".start").empty();
+  layout(items);
 };
 
 //STOP FUNC
@@ -258,4 +222,44 @@ const playSound = event => {
   window.setTimeout(() => {
     $(event.target).removeClass("pulse fast");
   }, 2000);
+};
+
+//THEME FUNCTION
+const checkTheme = () => {
+  if ($("body").hasClass("bg-light")) {
+    $("body, .card").removeClass("bg-light");
+    $(".navbar-brand, .card-header").removeClass("text-dark");
+    $(".navbar").removeClass(`bg-light navbar-light`);
+    $(".name").removeClass("badge-secondary");
+    $(".theme").removeClass("badge-dark");
+    $(".extra").removeClass(`badge-light text-dark`);
+
+    //
+    $("body").addClass("bg-dark");
+    $(".navbar-brand, .card-header").addClass("text-light");
+    $(".navbar").addClass(`navbar-dark bg-dark`);
+    $(".card").addClass(`bg-dark border-light`);
+    $(".theme").text("Light");
+    $(".theme, .name").addClass("badge-light");
+    $(".extra").addClass(`badge-dark text-light`);
+
+    //
+  } else if ($("body").hasClass("bg-dark")) {
+    $("body").removeClass("bg-dark");
+    $(".navbar-brand, .card-header").removeClass("text-light");
+    $(".navbar").removeClass(`bg-dark navbar-dark`);
+    $(".card").removeClass(`bg-dark border-light`);
+    $(".theme, .name").removeClass("badge-light");
+    $(".extra").removeClass(`badge-dark text-light`);
+
+    //
+    $("body").addClass("bg-light");
+    $(".navbar-brand, .card-header").addClass("text-dark");
+    $(".navbar").addClass(`bg-light navbar-light`);
+    $(".theme")
+      .text("Dark")
+      .addClass("badge-dark");
+    $(".name").addClass("badge-secondary");
+    $(".extra").addClass(`badge-light text-dark`);
+  }
 };
