@@ -1,4 +1,4 @@
-## sounds
+# sounds
 
 Base to create a soundboard for anything.
 
@@ -56,7 +56,7 @@ Next we push all the sounds into our items array.
 
 ---
 
-## Step 3
+### Step 3
 
 ---
 
@@ -81,7 +81,7 @@ Repeat this step for the rest of the navbar items. The nav-item button named "Ot
 
 ---
 
-## Step 4
+### Step 4
 
 ---
 
@@ -123,8 +123,8 @@ Using the South Park example when you are done that part of the function should 
 
 ---
 
-## Step 5
+### Step 5
 
 ---
 
-Repeat Steps 1 and 2 every time you add more sounds (without cloning the repo of course). Test everything out and enjoy. It is mobile responsive and includes a dark theme. By default the page is loaded sorting the sounds in alphabetical order by character name. You can also sort by newest sound added and play a random sound. I'm sure theres is a bug. Or 2 or 3, but it does work. Enjoy!
+Repeat Steps 1 and 2 every time you add more sounds (without cloning the repo of course). Test everything out and enjoy. It is mobile responsive and includes a dark theme. By default the page is loaded sorting the sounds in alphabetical order by character name. It also badges the card header with NEW for the last 10 sounds added. You can sort by newest sound added and play a random sound. I'm sure theres is a bug. Or 2 or 3, but it does work. Enjoy!
