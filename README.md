@@ -1,6 +1,7 @@
 # sounds
 
 Base to create a soundboard for anything.
+Uses Bootstrap, Animate.css, and FontAwesome.
 
 _some assembly required_
 
@@ -10,8 +11,6 @@ _some assembly required_
 
 Clone this repo and navigate to the assets/sounds folder.
 Add your mp3 files to that folder.
-
----
 
 ### Step 2
 
@@ -54,8 +53,6 @@ Next we push all the sounds into our items array.
 
     items.push(sound1, sound2, sound3)
 
----
-
 ### Step 3
 
 ---
@@ -78,8 +75,6 @@ These are used to filter the DOM by specific characters relevant to your soundbo
     </li>
 
 Repeat this step for the rest of the navbar items. The nav-item button named "Other" will take care of filtering for characters that aren't specificed in the 4 nav-items available.
-
----
 
 ### Step 4
 
@@ -121,10 +116,9 @@ Using the South Park example when you are done that part of the function should 
 
 **These values must match the ids specified in Step 3.**
 
----
-
 ### Step 5
 
 ---
 
-Repeat Steps 1 and 2 every time you add more sounds (without cloning the repo of course). Test everything out and enjoy. It is mobile responsive and includes a dark theme. By default the page is loaded sorting the sounds in alphabetical order by character name. It also badges the card header with NEW for the last 10 sounds added. You can sort by newest sound added and play a random sound. I'm sure theres is a bug. Or 2 or 3, but it does work. Enjoy!
+Repeat Steps 1 and 2 every time you add more sounds (without cloning the repo of course). Test everything out and enjoy. It is mobile responsive and includes a dark theme. By default the page is loaded sorting the sounds in alphabetical order by character name. It also badges the card header with NEW for the last 10 sounds added. You can sort by newest sound added and play a random sound.
+I'm sure theres is a bug. Or 2 or 3, but it does work. Enjoy!

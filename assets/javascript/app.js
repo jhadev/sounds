@@ -67,16 +67,21 @@ const capitalizeFirst = string => {
 //PRINT HTML
 const layout = array => {
   array.forEach(item => {
-    const { id, name, displayName, character } = item;
+    const {
+      id,
+      name,
+      displayName,
+      character
+    } = item;
     const columnDiv = $("<div>").addClass("col-lg-4 col-md-6 col-12");
     const cardDiv = $("<div>");
     cardDiv.addClass("card shadow m-2").appendTo(columnDiv);
     const cardHeader = $("<div>");
-    id >= array.length - 10
-      ? cardHeader.html(
-          `${character} <div id="new" class="ml-1 badge badge-pill badge-warning">NEW</div>`
-        )
-      : cardHeader.text(character);
+    id >= array.length - 10 ?
+      cardHeader.html(
+        `${character} <div id="new" class="ml-1 badge badge-pill badge-warning">NEW</div>`
+      ) :
+      cardHeader.text(character);
     cardHeader.addClass("card-header").appendTo(cardDiv);
     const cardBody = $("<div>");
     cardBody.addClass("card-body").appendTo(cardDiv);
@@ -125,14 +130,9 @@ $(document).on("click", ".stop", event => {
 });
 
 //CLICK FUNCTION TO SORT DOM
-$(document).on("click", ".sort-by-new", event => {
+$(document).on("click", ".sort", event => {
   event.preventDefault();
-  sortByNew();
-});
-
-$(document).on("click", ".sort-by-name", event => {
-  event.preventDefault();
-  sortByName();
+  sortAll(event);
 });
 
 //CLICK FUNCTION FOR RANDOM
@@ -157,16 +157,18 @@ $(document).on("click", ".theme", event => {
 //REBUILD DOM BY CHARACTER
 
 const filterByCharacter = event => {
-  const { id } = event.target;
+  const {
+    id
+  } = event.target;
   const itemsClone = [...items];
   const filteredArray = itemsClone.filter(item => id == item.character);
   const otherArray = itemsClone.filter(
     item =>
-      id == "Other" &&
-      item.character != "Character 1" &&
-      item.character != "Character 2" &&
-      item.character != "Character 3" &&
-      item.character != "Character 4"
+    id == "Other" &&
+    item.character != "Character 1" &&
+    item.character != "Character 2" &&
+    item.character != "Character 3" &&
+    item.character != "Character 4"
   );
   //match character names with navbar badge HTML for filtering. "Other" will auto match with characters not matched with these ids.
   $(".start").empty();
@@ -179,25 +181,40 @@ const filterByCharacter = event => {
   }
 };
 
-//SORT FUNCs
-const sortByName = () => {
-  items.sort(sortByCharacter);
-  $(".start").empty();
-  layout(items);
-};
-
-const sortByNew = () => {
-  items.sort(sortById);
-  $(".start").empty();
-  layout(items);
+const sortAll = event => {
+  const {
+    value
+  } = event.target;
+  switch (value) {
+    case "sortbynew":
+      items.sort(sortById);
+      $(".start").empty();
+      layout(items);
+      $(".sort")
+        .text("Show All by Name")
+        .val("sortbyname");
+      break;
+    case "sortbyname":
+      items.sort(sortByCharacter);
+      $(".start").empty();
+      layout(items);
+      $(".sort")
+        .text("Show All By New")
+        .val("sortbynew");
+  }
 };
 
 //STOP FUNC
 const stopSound = event => {
   $(event.target).addClass("pulse fast");
-  const { value } = event.target;
+  const {
+    value
+  } = event.target;
   items.forEach(sound => {
-    const { name, audio } = sound;
+    const {
+      name,
+      audio
+    } = sound;
     if (name === value) {
       audio.pause();
     }
@@ -210,9 +227,14 @@ const stopSound = event => {
 //PLAY FUNC
 const playSound = event => {
   $(event.target).addClass("pulse fast");
-  const { value } = event.target;
+  const {
+    value
+  } = event.target;
   items.forEach(sound => {
-    const { name, audio } = sound;
+    const {
+      name,
+      audio
+    } = sound;
     if (name === value) {
       audio.play();
     } else {
