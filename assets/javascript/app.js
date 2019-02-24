@@ -68,7 +68,7 @@ const layout = array => {
     const cardDiv = $("<div>");
     cardDiv.addClass("card shadow m-2").appendTo(columnDiv);
     const cardHeader = $("<div>");
-    id > 58 ?
+    id > 0 ?
       cardHeader.html(
         `${character} <div id="new" class="ml-1 badge badge-pill badge-warning">NEW</div>`
       ) :
@@ -99,10 +99,6 @@ const layout = array => {
       .html(`<i class="far fa-pause-circle ml-2"></i> Pause`)
       .appendTo(cardBody);
     $(".start").append(columnDiv);
-    if ($("body").hasClass("bg-dark")) {
-      $(".card").addClass(`bg-dark border-light`);
-      $(".card-header").addClass("text-light");
-    }
     if ($("body").hasClass("bg-dark")) {
       $(".card").addClass(`bg-dark border-light`);
       $(".card-header").addClass("text-light");
