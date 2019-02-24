@@ -20,6 +20,16 @@ Add your mp3 files to that folder.
 Navigate to the assets/javascript folder and open 'app.js' in your code editor.
 On line 7 you will see the class blueprint to layout your sound objects.
 
+    class Sound {
+      constructor(id, displayName, name, character, audio) {
+        this.id = id;
+        this.displayName = displayName;
+        this.name = name;
+        this.character = character;
+        this.audio = audio;
+      }
+    }
+
 **_id_** = _number_ - The id of your sound. Go in order.
 
 **_displayName_** = _string_ - The name you want displayed on the button to play your sound.
@@ -33,11 +43,11 @@ On line 7 you will see the class blueprint to layout your sound objects.
 Start by declaring new Sounds. In our example we use South Park.
 
     const sound1 = new Sound(
-    1,
-    "Respect",
-    "respect",
-    "Cartman",
-    new Audio(`${path}respect.mp3`)
+      1,
+      "Respect",
+      "respect",
+      "Cartman",
+      new Audio(`${path}respect.mp3`)
     );
 
 Next we push all the sounds into our items array.
@@ -79,25 +89,25 @@ Navigate to the assets/javascript folder and open 'app.js' in your code editor.
 Find the _filterByCharacter_ function. It should look like this:
 
     const filterByCharacter = event => {
-    const { id } = event.target;
-    const itemsClone = [...items];
-    const filteredArray = itemsClone.filter(item => id == item.character);
-    const otherArray = itemsClone.filter(
-    item =>
-      id == "Other" &&
-      item.character != "Character 1" &&
-      item.character != "Character 2" &&
-      item.character != "Character 3" &&
-      item.character != "Character 4"
-    );
+      const { id } = event.target;
+      const itemsClone = [...items];
+      const filteredArray = itemsClone.filter(item => id == item.character);
+      const otherArray = itemsClone.filter(
+        item =>
+          id == "Other" &&
+          item.character != "Character 1" &&
+          item.character != "Character 2" &&
+          item.character != "Character 3" &&
+          item.character != "Character 4"
+      );
 
-    $(".start").empty();
-    if (id == "Other") {
-    otherArray.sort(compare);
-    layout(otherArray);
+      $(".start").empty();
+      if (id == "Other") {
+        otherArray.sort(compare);
+        layout(otherArray);
       } else {
-    filteredArray.sort(sortById);
-    layout(filteredArray);
+        filteredArray.sort(sortById);
+        layout(filteredArray);
       }
     };
 
