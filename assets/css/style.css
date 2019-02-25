@@ -37,6 +37,14 @@ button {
   font-weight: bolder;
 }
 
+.badge:hover {
+  color: rgba(247, 247, 247, 0.445) !important;
+}
+
+.badge-light:hover {
+  color: rgba(56, 56, 56, 0.445) !important;
+}
+
 .play {
   margin-right: 5px;
 }
