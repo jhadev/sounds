@@ -6,9 +6,9 @@ Uses Bootstrap, Animate.css, and FontAwesome.
 ### Todo
 
 - [x] Badge the Sort All nav-item with the total sound count.
-- [ ] Show counts for each character nav-items.
-- [ ] Dynamically create the navbar-items for filtering.
-- [ ] Populate the nav-items with characters based on how many sounds they have. The most popular characters will automatically be featured in the navbar. (This is make setup a breeze)
+- [ ] Show counts for each character's nav-items.
+- [ ] Dynamically create the nav-items for filtering.
+- [ ] Populate the nav-items with characters based on how many sounds they have. The most popular characters will automatically be featured in the navbar. (This will make setup a breeze)
 
 ### Step 1
 
