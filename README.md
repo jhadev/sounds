@@ -103,7 +103,7 @@ Find the _filterByCharacter_ function. It should look like this:
 
       $(".start").empty();
       if (id == "Other") {
-        otherArray.sort(compare);
+        otherArray.sort(sortByCharacter);
         layout(otherArray);
       } else {
         filteredArray.sort(sortById);
@@ -126,4 +126,4 @@ Using the South Park example when you are done that part of the function should 
 ---
 
 Repeat Steps 1 and 2 every time you add more sounds (without cloning the repo of course). Test everything out and enjoy. It is mobile responsive and includes a dark theme. By default the page is loaded sorting the sounds in alphabetical order by character name. It also badges the card header with NEW for the last 10 sounds added. You can sort by newest sound added and play a random sound.
-I'm sure theres is a bug. Or 2 or 3, but it does work. Enjoy!
+I'm sure there is a bug. Or 2 or 3, but it does work. Enjoy!
