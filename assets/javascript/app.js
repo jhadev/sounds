@@ -77,7 +77,7 @@ const layout = array => {
     const cardDiv = $("<div>");
     cardDiv.addClass("card shadow m-2").appendTo(columnDiv);
     const cardHeader = $("<div>");
-    id >= array.length - 10 ?
+    id >= items.length - 10 ?
       cardHeader.html(
         `${character} <div id="new" class="ml-1 badge badge-pill badge-warning">NEW</div>`
       ) :
