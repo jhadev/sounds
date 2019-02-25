@@ -67,21 +67,16 @@ const capitalizeFirst = string => {
 //PRINT HTML
 const layout = array => {
   array.forEach(item => {
-    const {
-      id,
-      name,
-      displayName,
-      character
-    } = item;
+    const { id, name, displayName, character } = item;
     const columnDiv = $("<div>").addClass("col-lg-4 col-md-6 col-12");
     const cardDiv = $("<div>");
     cardDiv.addClass("card shadow m-2").appendTo(columnDiv);
     const cardHeader = $("<div>");
-    id >= items.length - 10 ?
-      cardHeader.html(
-        `${character} <div id="new" class="ml-1 badge badge-pill badge-warning">NEW</div>`
-      ) :
-      cardHeader.text(character);
+    id >= items.length - 10
+      ? cardHeader.html(
+          `${character} <div id="new" class="ml-1 badge badge-pill badge-warning">NEW</div>`
+        )
+      : cardHeader.text(character);
     cardHeader.addClass("card-header").appendTo(cardDiv);
     const cardBody = $("<div>");
     cardBody.addClass("card-body").appendTo(cardDiv);
@@ -108,6 +103,7 @@ const layout = array => {
       .html(`<i class="far fa-pause-circle ml-2"></i> Pause`)
       .appendTo(cardBody);
     $(".start").append(columnDiv);
+    $(".total-count").text(items.length);
     if ($("body").hasClass("bg-dark")) {
       $(".card").addClass(`bg-dark border-light`);
       $(".card-header").addClass("text-light");
@@ -157,18 +153,16 @@ $(document).on("click", ".theme", event => {
 //REBUILD DOM BY CHARACTER
 
 const filterByCharacter = event => {
-  const {
-    id
-  } = event.target;
+  const { id } = event.target;
   const itemsClone = [...items];
   const filteredArray = itemsClone.filter(item => id == item.character);
   const otherArray = itemsClone.filter(
     item =>
-    id == "Other" &&
-    item.character != "Character 1" &&
-    item.character != "Character 2" &&
-    item.character != "Character 3" &&
-    item.character != "Character 4"
+      id == "Other" &&
+      item.character != "Character 1" &&
+      item.character != "Character 2" &&
+      item.character != "Character 3" &&
+      item.character != "Character 4"
   );
   //match character names with navbar badge HTML for filtering. "Other" will auto match with characters not matched with these ids.
   $(".start").empty();
@@ -182,39 +176,38 @@ const filterByCharacter = event => {
 };
 
 const sortAll = event => {
-  const {
-    value
-  } = event.target;
+  const counter = `<span class="total-count badge badge-light">${
+    items.length
+  }</span><span class="sr-only">total</span>`;
+  const { value } = event.target;
   switch (value) {
     case "sortbynew":
       items.sort(sortById);
       $(".start").empty();
       layout(items);
       $(".sort")
-        .text("Show All by Name")
-        .val("sortbyname");
+        .text("Sort by Name ")
+        .val("sortbyname")
+        .append(counter);
       break;
     case "sortbyname":
       items.sort(sortByCharacter);
       $(".start").empty();
       layout(items);
       $(".sort")
-        .text("Show All By New")
-        .val("sortbynew");
+        .text("Sort By New ")
+        .val("sortbynew")
+        .append(counter);
+      break;
   }
 };
 
 //STOP FUNC
 const stopSound = event => {
   $(event.target).addClass("pulse fast");
-  const {
-    value
-  } = event.target;
+  const { value } = event.target;
   items.forEach(sound => {
-    const {
-      name,
-      audio
-    } = sound;
+    const { name, audio } = sound;
     if (name === value) {
       audio.pause();
     }
@@ -227,14 +220,9 @@ const stopSound = event => {
 //PLAY FUNC
 const playSound = event => {
   $(event.target).addClass("pulse fast");
-  const {
-    value
-  } = event.target;
+  const { value } = event.target;
   items.forEach(sound => {
-    const {
-      name,
-      audio
-    } = sound;
+    const { name, audio } = sound;
     if (name === value) {
       audio.play();
     } else {
