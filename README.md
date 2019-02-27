@@ -2,7 +2,8 @@
 
 Base to create a soundboard for anything.
 Uses Bootstrap, Animate.css, and FontAwesome.
-[See The Demo](https://jhadev.github.io/sounds/) - no mp3 files to play just the layout.
+
+[Demo](https://jhadev.github.io/sounds/) - no mp3 files to play just the layout.
 
 ### Todo
 
