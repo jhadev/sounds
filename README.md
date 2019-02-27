@@ -30,7 +30,7 @@ On line 7 you will see the class blueprint to layout your sound objects.
         this.displayName = displayName;
         this.name = name;
         this.character = character;
-        this.isFeatured = isFeatured
+        this.isFeatured = isFeatured;
         this.audio = audio;
       }
     }
