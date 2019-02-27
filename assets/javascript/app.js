@@ -21,11 +21,11 @@ class Sound {
 
 const sound1 = new Sound(
   1, //id of object
-  "Test", //string to display on button
-  "test", //name must match mp3 filename
+  "Please Don't Go", //string to display on button
+  "pleasedontgo", //name must match mp3 filename
   "Butters", //character name to write to header
   1, //featured characters are set in order they appear on nav
-  new Audio(`${path}test.mp3`) //audio file
+  new Audio(`${path}pleasedontgo.mp3`) //audio file
 );
 
 const sound2 = new Sound(
@@ -48,11 +48,11 @@ const sound3 = new Sound(
 
 const sound4 = new Sound(
   4,
-  "Test(2)", //display name on button
-  "test-2", //name of file must match mp3 filename
+  "Good Job", //display name on button
+  "goodjob", //name of file must match mp3 filename
   "Kyle",
   4, //kyle is set as 4 since he is the 4th in our navbar
-  new Audio(`${path}killed.mp3`) //audio file
+  new Audio(`${path}goodjob.mp3`) //audio file
 );
 
 const sound5 = new Sound(
@@ -70,7 +70,7 @@ const sound6 = new Sound(
   "goinghome", //name of file must match mp3 filename
   "Cartman", //character to write to header
   2,
-  new Audio(`${path}wah.mp3`) //audio file
+  new Audio(`${path}goinghome.mp3`) //audio file
 );
 
 //PUSH INTO ARRAY
