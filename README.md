@@ -25,11 +25,12 @@ Navigate to the assets/javascript folder and open 'app.js' in your code editor.
 On line 7 you will see the class blueprint to layout your sound objects.
 
     class Sound {
-      constructor(id, displayName, name, character, audio) {
+      constructor(id, displayName, name, character, isFeatured audio) {
         this.id = id;
         this.displayName = displayName;
         this.name = name;
         this.character = character;
+        this.isFeatured = isFeatured
         this.audio = audio;
       }
     }
