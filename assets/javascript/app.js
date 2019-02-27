@@ -60,7 +60,7 @@ const sound5 = new Sound(
   "Timmy!", //display name on button
   "timmy", //name of file must match mp3 filename
   "Timmy", //character to write to header
-  5, //the 5th character declared
+  5, //Timmy's charId is 5
   new Audio(`${path}timmy.mp3`) //audio file
 );
 
@@ -69,7 +69,7 @@ const sound6 = new Sound(
   "Going Home", //display name on button
   "goinghome", //name of file must match mp3 filename
   "Cartman", //character to write to header
-  2,
+  2, //Cartman's charId
   new Audio(`${path}goinghome.mp3`) //audio file
 );
 

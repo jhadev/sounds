@@ -27,7 +27,7 @@ Navigate to the assets/javascript folder and open 'app.js' in your code editor.
 On line 7 you will see the class blueprint to layout your sound objects.
 
     class Sound {
-      constructor(id, displayName, name, character, charId audio) {
+      constructor(id, displayName, name, character, charId, audio) {
         this.id = id;
         this.displayName = displayName;
         this.name = name;
@@ -43,27 +43,26 @@ On line 7 you will see the class blueprint to layout your sound objects.
 
 **_name_** = _string_ - The HTML value attribute that will be added to the button. **THIS MUST MATCH YOUR FILENAME**
 
-**_character_** = _string_ - The name of the character to be displayed on the header ex: If this was a South Park soundboard we can say "Cartman".
+**_character_** = _string_ - The name of the character to be displayed on the header ex: If this was a South Park soundboard we can say "Butters".
 
 **_charId_** = _number_ - Determines whether the character will be featured in the navbar for sorting. Characters with an Id of 1-4 will be featured in the navbar and badged to count the total sounds for each character.
 
 **_audio_** = uses the JavaScript new Audio constructor for our mp3 file. Takes one argument which is the path our mp3 file.
 
-Start by declaring new Sounds. In our example we use South Park.
+Start by declaring new Sounds. In our example we use South Park. See line 22 in "assets/javascript/app.js" for more details
 
     const sound1 = new Sound(
-    1,
-    "Test",
-    "test",
-    "Butters",
-    1,
-    new Audio(`${path}test.mp3`) //audio file
-
-);
+      1,
+      "Please Don't Go",
+      "pleasedontgo",
+      "Butters",
+      1,
+      new Audio(`${path}pleasedontgo.mp3`)
+    );
 
 Next we push all the sounds into our items array.
 
-    items.push(sound1, sound2, sound3)
+    items.push(sound1, sound2, sound3, ...)
 
 ### Step 3
 
