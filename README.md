@@ -2,11 +2,12 @@
 
 Base to create a soundboard for anything.
 Uses Bootstrap, Animate.css, and FontAwesome.
+[See The Demo](https://jhadev.github.io/sounds/) - no mp3 files to play just the layout.
 
 ### Todo
 
 - [x] Badge the Sort All nav-item with the total sound count.
-- [ ] Show counts for each character's nav-items.
+- [x] Show counts for each character's nav-items.
 - [ ] Dynamically create the nav-items for filtering.
 - [ ] Populate the nav-items with characters based on how many sounds they have. The most popular characters will automatically be featured in the navbar. (This will make setup a breeze)
 
@@ -25,12 +26,12 @@ Navigate to the assets/javascript folder and open 'app.js' in your code editor.
 On line 7 you will see the class blueprint to layout your sound objects.
 
     class Sound {
-      constructor(id, displayName, name, character, isFeatured audio) {
+      constructor(id, displayName, name, character, charId audio) {
         this.id = id;
         this.displayName = displayName;
         this.name = name;
         this.character = character;
-        this.isFeatured = isFeatured;
+        this.charId = charId;
         this.audio = audio;
       }
     }
@@ -43,20 +44,21 @@ On line 7 you will see the class blueprint to layout your sound objects.
 
 **_character_** = _string_ - The name of the character to be displayed on the header ex: If this was a South Park soundboard we can say "Cartman".
 
-**_isFeatured_** = _boolean_ - Determines whether the character will be featured in the navbar for sorting. Use true for your 4 most popular characters and false for the rest.
+**_charId_** = _number_ - Determines whether the character will be featured in the navbar for sorting. Characters with an Id of 1-4 will be featured in the navbar and badged to count the total sounds for each character.
 
 **_audio_** = uses the JavaScript new Audio constructor for our mp3 file. Takes one argument which is the path our mp3 file.
 
 Start by declaring new Sounds. In our example we use South Park.
 
     const sound1 = new Sound(
-      1,
-      "Respect",
-      "respect",
-      "Cartman",
-      true
-      new Audio(`${path}respect.mp3`)
-    );
+    1,
+    "Test",
+    "test",
+    "Butters",
+    1,
+    new Audio(`${path}test.mp3`) //audio file
+
+);
 
 Next we push all the sounds into our items array.
 
@@ -67,21 +69,16 @@ Next we push all the sounds into our items array.
 ---
 
 Navigate to the root of the project and open 'index.html' in your code editor.
-On line 31 you will see the start of the navbar items.
+On line 31 you will see the start of the navbar items. This the example. Since Butters was declared with a charId of 1 in Step 2, he will be our first nav-item. This will make sure each character gets the correct count for their total number of sounds on the navbar
 
     <li class="nav-item">
-      <button class="btn badge m-1 name animated lightSpeedIn badge-secondary" id="Character 1" value="Character 1">
-            Character 1
+      <button class="btn badge m-1 name animated lightSpeedIn badge-secondary" id="Butters">
+        Butters &nbsp<span class="char-1 badge badge-light"></span>
+        <span class="sr-only">char-1-total</span>
       </button>
     </li>
 
-These are used to filter the DOM by specific characters relevant to your soundboard. For South Park we will change it to something like this:
-
-    <li class="nav-item">
-      <button class="btn badge m-1 name animated lightSpeedIn badge-secondary" id="Butters" value="Butters">
-            Butters
-      </button>
-    </li>
+These are used to filter the DOM by specific characters relevant to your soundboard. For the filtering to work the id of the button must match the displayName set when declaring each new sound in Step 2. The only things that need to be changed for the 4 nav-items are the id and the text to display on the page.
 
 Repeat this step for the rest of the navbar items. The nav-item button named "Other" will take care of filtering for characters that aren't specificed in the 4 nav-items available.
 

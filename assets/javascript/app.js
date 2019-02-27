@@ -5,12 +5,12 @@ const items = [];
 
 //CLASS TO LAYOUT SOUND OBJECTS
 class Sound {
-  constructor(id, displayName, name, character, isFeatured, audio) {
+  constructor(id, displayName, name, character, charId, audio) {
     this.id = id;
     this.displayName = displayName;
     this.name = name;
     this.character = character;
-    this.isFeatured = isFeatured;
+    this.charId = charId;
     this.audio = audio;
   }
 }
@@ -18,36 +18,64 @@ class Sound {
 //DECLARE NEW SOUND CONSTRUCTORS
 
 //example
+
 const sound1 = new Sound(
-  1, //id
-  "Respect", //string to display on button
-  "respect", //name of file must match mp3 filename
-  "Cartman", //character name to write to header
-  true, //boolean to determine whether character will be featured in sorting for the navbar
-  new Audio(`${path}respect.mp3`) //audio file in sounds folder
+  1, //id of object
+  "Test", //string to display on button
+  "test", //name must match mp3 filename
+  "Butters", //character name to write to header
+  1, //featured characters are set in order they appear on nav
+  new Audio(`${path}test.mp3`) //audio file
 );
 
 const sound2 = new Sound(
-  2,
-  "Killed Kenny", //display name on button
-  "killed", //name of file must match mp3 filename
-  "Stan", //character to write to header
-  true, //boolean to determine whether character will be featured in sorting for the navbar
-  new Audio(`${path}killed.mp3`) //audio file
+  2, //id
+  "Respect", //string to display on button
+  "respect", //name of file must match mp3 filename
+  "Cartman", //character name to write to header
+  2, //cartman is assigned a value of 2
+  new Audio(`${path}respect.mp3`) //audio file in sounds folder
 );
 
 const sound3 = new Sound(
   3,
+  "Killed Kenny", //display name on button
+  "killed", //name of file must match mp3 filename
+  "Stan",
+  3, //stan is set as 3 since he is the 3rd in our navbar
+  new Audio(`${path}killed.mp3`) //audio file
+);
+
+const sound4 = new Sound(
+  4,
+  "Test(2)", //display name on button
+  "test-2", //name of file must match mp3 filename
+  "Kyle",
+  4, //kyle is set as 4 since he is the 4th in our navbar
+  new Audio(`${path}killed.mp3`) //audio file
+);
+
+const sound5 = new Sound(
+  5,
   "Timmy!", //display name on button
   "timmy", //name of file must match mp3 filename
   "Timmy", //character to write to header
-  false, //boolean to determine whether character will be featured in sorting for the navbar
+  5, //the 5th character declared
   new Audio(`${path}timmy.mp3`) //audio file
+);
+
+const sound6 = new Sound(
+  6,
+  "Going Home", //display name on button
+  "goinghome", //name of file must match mp3 filename
+  "Cartman", //character to write to header
+  2,
+  new Audio(`${path}wah.mp3`) //audio file
 );
 
 //PUSH INTO ARRAY
 
-items.push(sound1, sound2, sound3);
+items.push(sound1, sound2, sound3, sound4, sound5, sound6);
 
 //FUNCTIONS FOR SORTING
 const sortByCharacter = (a, b) => {
@@ -169,7 +197,7 @@ const filterByCharacter = event => {
   const itemsClone = [...items];
   const filteredArray = itemsClone.filter(item => id === item.character);
   const otherArray = itemsClone.filter(
-    item => id === "Other" && item.isFeatured === false
+    item => id === "Other" && item.charId > 4
   );
   //match character names with navbar badge HTML for filtering. "Other" will auto match with characters not matched with these ids if their isFeatured property is set to false.
   $(".start").empty();
@@ -241,13 +269,28 @@ const playSound = event => {
   }, 2000);
 };
 
+const countAll = () => {
+  const newItems = [...items];
+  const charOne = newItems.filter(item => item.charId === 1);
+  const charTwo = newItems.filter(item => item.charId === 2);
+  const charThree = newItems.filter(item => item.charId === 3);
+  const charFour = newItems.filter(item => item.charId === 4);
+  const other = newItems.filter(item => item.charId > 4);
+  $(".char-1").text(charOne.length);
+  $(".char-2").text(charTwo.length);
+  $(".char-3").text(charThree.length);
+  $(".char-4").text(charFour.length);
+  $(".other-total").text(other.length);
+};
+
+countAll();
+
 //THEME FUNCTION
 const checkTheme = () => {
   if ($("body").hasClass("bg-light")) {
     $("body, .card").removeClass("bg-light");
     $(".navbar-brand, .card-header").removeClass("text-dark");
     $(".navbar").removeClass(`bg-light navbar-light`);
-    $(".name").removeClass("badge-secondary");
     $(".theme").removeClass("badge-dark");
     $(".extra").removeClass(`badge-light text-dark`);
 
@@ -257,7 +300,7 @@ const checkTheme = () => {
     $(".navbar").addClass(`navbar-dark bg-dark`);
     $(".card").addClass(`bg-dark border-light`);
     $(".theme").text("Light");
-    $(".theme, .name").addClass("badge-light");
+    $(".theme").addClass("badge-light");
     $(".extra").addClass(`badge-dark text-light`);
 
     //
@@ -266,7 +309,7 @@ const checkTheme = () => {
     $(".navbar-brand, .card-header").removeClass("text-light");
     $(".navbar").removeClass(`bg-dark navbar-dark`);
     $(".card").removeClass(`bg-dark border-light`);
-    $(".theme, .name").removeClass("badge-light");
+    $(".theme").removeClass("badge-light");
     $(".extra").removeClass(`badge-dark text-light`);
 
     //
@@ -276,7 +319,6 @@ const checkTheme = () => {
     $(".theme")
       .text("Dark")
       .addClass("badge-dark");
-    $(".name").addClass("badge-secondary");
     $(".extra").addClass(`badge-light text-dark`);
   }
 };
