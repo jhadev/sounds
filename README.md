@@ -42,6 +42,8 @@ On line 7 you will see the class blueprint to layout your sound objects.
 
 **_character_** = _string_ - The name of the character to be displayed on the header ex: If this was a South Park soundboard we can say "Cartman".
 
+**_isFeatured_** = _boolean_ - Determines whether the character will be featured in the navbar for sorting. Use true for your 4 most popular characters and false for the rest.
+
 **_audio_** = uses the JavaScript new Audio constructor for our mp3 file. Takes one argument which is the path our mp3 file.
 
 Start by declaring new Sounds. In our example we use South Park.
@@ -51,6 +53,7 @@ Start by declaring new Sounds. In our example we use South Park.
       "Respect",
       "respect",
       "Cartman",
+      true
       new Audio(`${path}respect.mp3`)
     );
 
@@ -63,7 +66,7 @@ Next we push all the sounds into our items array.
 ---
 
 Navigate to the root of the project and open 'index.html' in your code editor.
-On line 30 you will see the start of the navbar items.
+On line 31 you will see the start of the navbar items.
 
     <li class="nav-item">
       <button class="btn badge m-1 name animated lightSpeedIn badge-secondary" id="Character 1" value="Character 1">
@@ -74,54 +77,14 @@ On line 30 you will see the start of the navbar items.
 These are used to filter the DOM by specific characters relevant to your soundboard. For South Park we will change it to something like this:
 
     <li class="nav-item">
-      <button class="btn badge m-1 name animated lightSpeedIn badge-secondary" id="Cartman" value="Cartman">
-            Cartman
+      <button class="btn badge m-1 name animated lightSpeedIn badge-secondary" id="Butters" value="Butters">
+            Butters
       </button>
     </li>
 
 Repeat this step for the rest of the navbar items. The nav-item button named "Other" will take care of filtering for characters that aren't specificed in the 4 nav-items available.
 
 ### Step 4
-
----
-
-Navigate to the assets/javascript folder and open 'app.js' in your code editor.
-Find the _filterByCharacter_ function. It should look like this:
-
-    const filterByCharacter = event => {
-      const { id } = event.target;
-      const itemsClone = [...items];
-      const filteredArray = itemsClone.filter(item => id == item.character);
-      const otherArray = itemsClone.filter(
-        item =>
-          id == "Other" &&
-          item.character != "Character 1" &&
-          item.character != "Character 2" &&
-          item.character != "Character 3" &&
-          item.character != "Character 4"
-      );
-
-      $(".start").empty();
-      if (id == "Other") {
-        otherArray.sort(sortByCharacter);
-        layout(otherArray);
-      } else {
-        filteredArray.sort(sortById);
-        layout(filteredArray);
-      }
-    };
-
-Add the character ids you specificed in Step 3 where you see "Character 1", "Character 2" and so on.
-Using the South Park example when you are done that part of the function should look something like this:
-
-    item.character != "Cartman" &&
-    item.character != "Stan" &&
-    item.character != "Kyle" &&
-    item.character != "Butters"
-
-**These values must match the ids specified in Step 3.**
-
-### Step 5
 
 ---
 

@@ -5,11 +5,12 @@ const items = [];
 
 //CLASS TO LAYOUT SOUND OBJECTS
 class Sound {
-  constructor(id, displayName, name, character, audio) {
+  constructor(id, displayName, name, character, isFeatured, audio) {
     this.id = id;
     this.displayName = displayName;
     this.name = name;
     this.character = character;
+    this.isFeatured = isFeatured;
     this.audio = audio;
   }
 }
@@ -22,6 +23,7 @@ const sound1 = new Sound(
   "Respect", //string to display on button
   "respect", //name of file must match mp3 filename
   "Cartman", //character name to write to header
+  true, //boolean to determine whether character will be featured in sorting for the navbar
   new Audio(`${path}respect.mp3`) //audio file in sounds folder
 );
 
@@ -30,12 +32,22 @@ const sound2 = new Sound(
   "Killed Kenny", //display name on button
   "killed", //name of file must match mp3 filename
   "Stan", //character to write to header
+  true, //boolean to determine whether character will be featured in sorting for the navbar
   new Audio(`${path}killed.mp3`) //audio file
+);
+
+const sound3 = new Sound(
+  3,
+  "Timmy!", //display name on button
+  "timmy", //name of file must match mp3 filename
+  "Timmy", //character to write to header
+  false, //boolean to determine whether character will be featured in sorting for the navbar
+  new Audio(`${path}timmy.mp3`) //audio file
 );
 
 //PUSH INTO ARRAY
 
-items.push(sound1, sound2);
+items.push(sound1, sound2, sound3);
 
 //FUNCTIONS FOR SORTING
 const sortByCharacter = (a, b) => {
@@ -155,18 +167,13 @@ $(document).on("click", ".theme", event => {
 const filterByCharacter = event => {
   const { id } = event.target;
   const itemsClone = [...items];
-  const filteredArray = itemsClone.filter(item => id == item.character);
+  const filteredArray = itemsClone.filter(item => id === item.character);
   const otherArray = itemsClone.filter(
-    item =>
-      id == "Other" &&
-      item.character != "Character 1" &&
-      item.character != "Character 2" &&
-      item.character != "Character 3" &&
-      item.character != "Character 4"
+    item => id === "Other" && item.isFeatured === false
   );
-  //match character names with navbar badge HTML for filtering. "Other" will auto match with characters not matched with these ids.
+  //match character names with navbar badge HTML for filtering. "Other" will auto match with characters not matched with these ids if their isFeatured property is set to false.
   $(".start").empty();
-  if (id == "Other") {
+  if (id === "Other") {
     otherArray.sort(sortByCharacter);
     layout(otherArray);
   } else {
