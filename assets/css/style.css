@@ -73,6 +73,16 @@ body {
   flex: 1;
 }
 
+.total-count,
+.other-total,
+.char-1,
+.char-2,
+.char-3,
+.char-4 {
+  pointer-events: none;
+  cursor: default;
+}
+
 @media screen and (max-width: 532px) {
   .navbar {
     margin-bottom: 20px !important;
