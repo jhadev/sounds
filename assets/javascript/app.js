@@ -33,7 +33,7 @@ const sound2 = new Sound(
   "Respect", //string to display on button
   "respect", //name of file must match mp3 filename
   "Cartman", //character name to write to header
-  2, //cartman is assigned since he is featured in the navbar and will appear 2nd
+  2, //cartman is assigned a charId of 2 since he is featured in the navbar and will appear 2nd
   new Audio(`${path}respect.mp3`) //audio file in sounds folder
 );
 
@@ -42,7 +42,7 @@ const sound3 = new Sound(
   "Killed Kenny", //display name on button
   "killed", //name of file must match mp3 filename
   "Stan",
-  3, //stan is set as 3 since he is the 3rd in the navbar
+  3, //stan is set as 3 since he is 3rd in the navbar
   new Audio(`${path}killed.mp3`) //audio file
 );
 
@@ -60,7 +60,7 @@ const sound5 = new Sound(
   "Timmy!", //display name on button
   "timmy", //name of file must match mp3 filename
   "Timmy", //character to write to header
-  5, //Timmy's charId is 5 he is files in Other on the navbar
+  5, //Timmy's charId is 5 he is filed in Other on the navbar
   new Audio(`${path}timmy.mp3`) //audio file
 );
 
@@ -107,21 +107,16 @@ const capitalizeFirst = string => {
 //PRINT HTML
 const layout = array => {
   array.forEach(item => {
-    const {
-      id,
-      name,
-      displayName,
-      character
-    } = item;
+    const { id, name, displayName, character } = item;
     const columnDiv = $("<div>").addClass("col-lg-4 col-md-6 col-12");
     const cardDiv = $("<div>");
     cardDiv.addClass("card shadow m-2").appendTo(columnDiv);
     const cardHeader = $("<div>");
-    id >= items.length - 10 ?
-      cardHeader.html(
-        `${character} <div id="new" class="ml-1 badge badge-pill badge-warning">NEW</div>`
-      ) :
-      cardHeader.text(character);
+    id >= items.length - 10
+      ? cardHeader.html(
+          `${character} <div id="new" class="ml-1 badge badge-pill badge-warning">NEW</div>`
+        )
+      : cardHeader.text(character);
     cardHeader.addClass("card-header").appendTo(cardDiv);
     const cardBody = $("<div>");
     cardBody.addClass("card-body").appendTo(cardDiv);
@@ -187,7 +182,6 @@ $(document).on("click", ".random", event => {
 $(document).on("click", ".name", event => {
   event.preventDefault();
   filterByCharacter(event);
-
 });
 
 //CLICK FUNCTION FOR THEME
@@ -199,30 +193,28 @@ $(document).on("click", ".theme", event => {
 //REBUILD DOM BY CHARACTER
 
 const genNavItems = () => {
-  const itemsCopy = [...items]
-  const filterByCharId = itemsCopy.filter(item => item.charId < 5)
+  const itemsCopy = [...items];
+  const filterByCharId = itemsCopy.filter(item => item.charId < 5);
 
   const sortedItems = filterByCharId.sort((a, b) => {
     if (a.charId > b.charId) return 1;
     if (a.charId < b.charId) return -1;
     return 0;
-  })
+  });
 
   //call lodash to remove dupes
-  const characters = _.uniqBy(sortedItems, 'character');
+  const characters = _.uniqBy(sortedItems, "character");
 
   for (let i = 0; i < characters.length; i++) {
-    const {
-      character,
-      charId
-    } = characters[i]
+    const { character, charId } = characters[i];
 
-    $(".start-buttons").before(`<li><button class="btn badge m-1 name gen animated lightSpeedIn badge-secondary" value="${character}">${character} &nbsp<span class="char-${charId} badge badge-light"></span>
-    <span class="sr-only">char-1-total</span></button></li>`)
+    $(".start-buttons")
+      .before(`<li><button class="btn badge m-1 name gen animated lightSpeedIn badge-secondary" value="${character}">${character} &nbsp<span class="char-${charId} badge badge-light"></span>
+    <span class="sr-only">char-1-total</span></button></li>`);
   }
-}
+};
 
-genNavItems()
+genNavItems();
 
 const countAll = () => {
   const newItems = [...items];
@@ -241,10 +233,7 @@ const countAll = () => {
 countAll();
 
 const filterByCharacter = event => {
-  const {
-    id,
-    value
-  } = event.target;
+  const { id, value } = event.target;
   const itemsClone = [...items];
   const filteredArray = itemsClone.filter(item => value === item.character);
   const otherArray = itemsClone.filter(
@@ -265,9 +254,7 @@ const sortAll = event => {
   const counter = `<span class="total-count badge badge-light">${
     items.length
   }</span><span class="sr-only">total</span>`;
-  const {
-    value
-  } = event.target;
+  const { value } = event.target;
   switch (value) {
     case "sortbynew":
       items.sort(sortById);
@@ -293,14 +280,9 @@ const sortAll = event => {
 //STOP FUNC
 const stopSound = event => {
   $(event.target).addClass("pulse fast");
-  const {
-    value
-  } = event.target;
+  const { value } = event.target;
   items.forEach(sound => {
-    const {
-      name,
-      audio
-    } = sound;
+    const { name, audio } = sound;
     if (name === value) {
       audio.pause();
     }
@@ -313,14 +295,9 @@ const stopSound = event => {
 //PLAY FUNC
 const playSound = event => {
   $(event.target).addClass("pulse fast");
-  const {
-    value
-  } = event.target;
+  const { value } = event.target;
   items.forEach(sound => {
-    const {
-      name,
-      audio
-    } = sound;
+    const { name, audio } = sound;
     if (name === value) {
       audio.play();
     } else {
@@ -331,7 +308,6 @@ const playSound = event => {
     $(event.target).removeClass("pulse fast");
   }, 2000);
 };
-
 
 //THEME FUNCTION
 const checkTheme = () => {

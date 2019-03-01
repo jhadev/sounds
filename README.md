@@ -1,7 +1,7 @@
 # sounds
 
 Base to create a soundboard for anything.
-Uses Bootstrap, Animate.css, and FontAwesome.
+Uses Lodash, jQuery, Bootstrap, Animate.css, and FontAwesome.
 
 [Demo](https://jhadev.github.io/sounds/)
 
@@ -10,7 +10,7 @@ Uses Bootstrap, Animate.css, and FontAwesome.
 - [x] Badge the Sort All nav-item with the total sound count.
 - [x] Show counts for each character's nav-items.
 - [x] Dynamically create the nav-items for filtering.
-- [ ] Populate the nav-items with characters based on how many sounds they have. The most popular characters will automatically be featured in the navbar. (This will make setup a breeze)
+- [ ] Populate the nav-items with characters based on how many sounds they have. The most popular characters will automatically be featured in the navbar.
 
 ### Step 1
 
@@ -49,7 +49,7 @@ On line 7 you will see the class blueprint to layout your sound objects.
 
 **_audio_** = uses the JavaScript new Audio constructor for our mp3 file. Takes one argument which is the path our mp3 file.
 
-Start by declaring new Sounds. In our example we use South Park. See line 22 in "assets/javascript/app.js" for more details
+Start by declaring new Sounds. This example uses South Park as a theme. See line 22 in "assets/javascript/app.js" for more details
 
     const sound1 = new Sound(
       1,
@@ -60,9 +60,9 @@ Start by declaring new Sounds. In our example we use South Park. See line 22 in 
       new Audio(`${path}pleasedontgo.mp3`)
     );
 
-Next we push all the sounds into our items array.
+Next, add each sound variable to push them into the items array.
 
-    items.push(sound1, sound2, sound3, ...)
+    items.push(sound1, sound2, sound3, sound4, ...)
 
 ### Step 3
 
