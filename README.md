@@ -5,9 +5,9 @@ Uses Lodash, jQuery, Bootstrap, Animate.css, and FontAwesome.
 
 [Demo](https://jhadev.github.io/sounds/)
 
+![biglight](https://user-images.githubusercontent.com/42519030/53685092-31f72000-3ce4-11e9-897e-60baaf4776d4.PNG)
 ![bigdark](https://user-images.githubusercontent.com/42519030/53685086-1a1f9c00-3ce4-11e9-9dc8-de5e54786efc.PNG)
 ![mobiledark](https://user-images.githubusercontent.com/42519030/53685091-302d5c80-3ce4-11e9-9431-a885435b84c5.PNG)
-![biglight](https://user-images.githubusercontent.com/42519030/53685092-31f72000-3ce4-11e9-897e-60baaf4776d4.PNG)
 ![mobilelight](https://user-images.githubusercontent.com/42519030/53685093-36233d80-3ce4-11e9-85af-2163da5552ff.PNG)
 
 ### Todo
