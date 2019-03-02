@@ -107,16 +107,21 @@ const capitalizeFirst = string => {
 //PRINT HTML
 const layout = array => {
   array.forEach(item => {
-    const { id, name, displayName, character } = item;
+    const {
+      id,
+      name,
+      displayName,
+      character
+    } = item;
     const columnDiv = $("<div>").addClass("col-lg-4 col-md-6 col-12");
     const cardDiv = $("<div>");
     cardDiv.addClass("card shadow m-2").appendTo(columnDiv);
     const cardHeader = $("<div>");
-    id >= items.length - 10
-      ? cardHeader.html(
-          `${character} <div id="new" class="ml-1 badge badge-pill badge-warning">NEW</div>`
-        )
-      : cardHeader.text(character);
+    id >= items.length - 10 ?
+      cardHeader.html(
+        `${character} <div id="new" class="ml-1 badge badge-pill badge-warning">NEW</div>`
+      ) :
+      cardHeader.text(character);
     cardHeader.addClass("card-header").appendTo(cardDiv);
     const cardBody = $("<div>");
     cardBody.addClass("card-body").appendTo(cardDiv);
@@ -169,7 +174,10 @@ const genNavItems = () => {
   const characters = _.uniqBy(sortedItems, "character");
 
   for (let i = 0; i < characters.length; i++) {
-    const { character, charId } = characters[i];
+    const {
+      character,
+      charId
+    } = characters[i];
 
     $(".start-buttons").before(`
     <li>
@@ -199,7 +207,10 @@ const countAll = () => {
 countAll();
 
 const filterByCharacter = event => {
-  const { id, value } = event.target;
+  const {
+    id,
+    value
+  } = event.target;
   const itemsClone = [...items];
   const filteredArray = itemsClone.filter(item => value === item.character);
   const otherArray = itemsClone.filter(
@@ -221,7 +232,9 @@ const sortAll = event => {
     <span class="total-count badge badge-light">
       ${items.length}
     </span>`;
-  const { value } = event.target;
+  const {
+    value
+  } = event.target;
   switch (value) {
     case "sortbynew":
       items.sort(sortById);
@@ -247,9 +260,14 @@ const sortAll = event => {
 //STOP FUNC
 const stopSound = event => {
   $(event.target).addClass("pulse fast");
-  const { value } = event.target;
+  const {
+    value
+  } = event.target;
   items.forEach(sound => {
-    const { name, audio } = sound;
+    const {
+      name,
+      audio
+    } = sound;
     if (name === value) {
       audio.pause();
     }
@@ -262,9 +280,14 @@ const stopSound = event => {
 //PLAY FUNC
 const playSound = event => {
   $(event.target).addClass("pulse fast");
-  const { value } = event.target;
+  const {
+    value
+  } = event.target;
   items.forEach(sound => {
-    const { name, audio } = sound;
+    const {
+      name,
+      audio
+    } = sound;
     if (name === value) {
       audio.play();
     } else {
@@ -279,15 +302,15 @@ const playSound = event => {
 //THEME FUNCTION
 const checkTheme = () => {
   if ($("body").hasClass("bg-light")) {
-    $("body, .card").removeClass("bg-light");
-    $(".navbar-brand, .card-header").removeClass("text-dark");
+    $("body, .card, .sticky-footer").removeClass("bg-light");
+    $(".navbar-brand, .card-header, .fab").removeClass("text-dark");
     $(".navbar").removeClass(`bg-light navbar-light`);
     $(".theme").removeClass("badge-dark");
     $(".extra").removeClass(`badge-light text-dark`);
 
     //
-    $("body").addClass("bg-dark");
-    $(".navbar-brand, .card-header").addClass("text-light");
+    $("body, .sticky-footer").addClass("bg-dark");
+    $(".navbar-brand, .card-header, .fab").addClass("text-light");
     $(".navbar").addClass(`navbar-dark bg-dark`);
     $(".card").addClass(`bg-dark border-light`);
     $(".theme").text("Light");
@@ -296,16 +319,16 @@ const checkTheme = () => {
 
     //
   } else if ($("body").hasClass("bg-dark")) {
-    $("body").removeClass("bg-dark");
-    $(".navbar-brand, .card-header").removeClass("text-light");
+    $("body, .sticky-footer").removeClass("bg-dark");
+    $(".navbar-brand, .card-header, .fab").removeClass("text-light");
     $(".navbar").removeClass(`bg-dark navbar-dark`);
     $(".card").removeClass(`bg-dark border-light`);
     $(".theme").removeClass("badge-light");
     $(".extra").removeClass(`badge-dark text-light`);
 
     //
-    $("body").addClass("bg-light");
-    $(".navbar-brand, .card-header").addClass("text-dark");
+    $("body, .sticky-footer").addClass("bg-light");
+    $(".navbar-brand, .card-header, .fab").addClass("text-dark");
     $(".navbar").addClass(`bg-light navbar-light`);
     $(".theme")
       .text("Dark")
