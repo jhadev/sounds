@@ -153,43 +153,6 @@ const layout = array => {
 
 layout(items);
 
-//CLICK FUNCTION TO PLAY
-$(document).on("click", ".play", event => {
-  event.preventDefault();
-  playSound(event);
-});
-
-//CLICK FUNCTION TO PAUSE
-$(document).on("click", ".stop", event => {
-  event.preventDefault();
-  stopSound(event);
-});
-
-//CLICK FUNCTION TO SORT DOM
-$(document).on("click", ".sort", event => {
-  event.preventDefault();
-  sortAll(event);
-});
-
-//CLICK FUNCTION FOR RANDOM
-$(document).on("click", ".random", event => {
-  event.preventDefault();
-  random();
-  $("#navbarNav").collapse("hide");
-});
-
-//CLICK FUNCTION TO REBUILD DOM
-$(document).on("click", ".name", event => {
-  event.preventDefault();
-  filterByCharacter(event);
-});
-
-//CLICK FUNCTION FOR THEME
-$(document).on("click", ".theme", event => {
-  event.preventDefault();
-  checkTheme();
-});
-
 //REBUILD DOM BY CHARACTER
 
 const genNavItems = () => {
@@ -208,9 +171,12 @@ const genNavItems = () => {
   for (let i = 0; i < characters.length; i++) {
     const { character, charId } = characters[i];
 
-    $(".start-buttons")
-      .before(`<li><button class="btn badge m-1 name gen animated lightSpeedIn badge-secondary" value="${character}">${character} &nbsp<span class="char-${charId} badge badge-light"></span>
-    <span class="sr-only">char-1-total</span></button></li>`);
+    $(".start-buttons").before(`
+    <li>
+      <button class="btn badge m-1 name gen animated fadeIn badge-secondary" value="${character}">${character} &nbsp
+        <span class="char-${charId} badge badge-light"></span>
+      </button>
+    </li>`);
   }
 };
 
@@ -251,9 +217,10 @@ const filterByCharacter = event => {
 };
 
 const sortAll = event => {
-  const counter = `<span class="total-count badge badge-light">${
-    items.length
-  }</span><span class="sr-only">total</span>`;
+  const counter = `
+    <span class="total-count badge badge-light">
+      ${items.length}
+    </span>`;
   const { value } = event.target;
   switch (value) {
     case "sortbynew":
@@ -346,3 +313,40 @@ const checkTheme = () => {
     $(".extra").addClass(`badge-light text-dark`);
   }
 };
+
+//CLICK FUNCTION TO PLAY
+$(document).on("click", ".play", event => {
+  event.preventDefault();
+  playSound(event);
+});
+
+//CLICK FUNCTION TO PAUSE
+$(document).on("click", ".stop", event => {
+  event.preventDefault();
+  stopSound(event);
+});
+
+//CLICK FUNCTION TO SORT DOM
+$(document).on("click", ".sort", event => {
+  event.preventDefault();
+  sortAll(event);
+});
+
+//CLICK FUNCTION FOR RANDOM
+$(document).on("click", ".random", event => {
+  event.preventDefault();
+  random();
+  $("#navbarNav").collapse("hide");
+});
+
+//CLICK FUNCTION TO REBUILD DOM
+$(document).on("click", ".name", event => {
+  event.preventDefault();
+  filterByCharacter(event);
+});
+
+//CLICK FUNCTION FOR THEME
+$(document).on("click", ".theme", event => {
+  event.preventDefault();
+  checkTheme();
+});
