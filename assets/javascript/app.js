@@ -173,7 +173,7 @@ const genNavItems = () => {
 
     $(".start-buttons").before(`
     <li>
-      <button class="btn badge m-1 name gen animated fadeIn badge-secondary" value="${character}">${character} &nbsp
+      <button class="btn badge m-1 name gen animated fadeIn badge-secondary" value="${character}">${character}&nbsp
         <span class="char-${charId} badge badge-light"></span>
       </button>
     </li>`);
@@ -228,7 +228,7 @@ const sortAll = event => {
       $(".start").empty();
       layout(items);
       $(".sort")
-        .text("Sort by Name ")
+        .html("Sort by Name&nbsp")
         .val("sortbyname")
         .append(counter);
       break;
@@ -237,7 +237,7 @@ const sortAll = event => {
       $(".start").empty();
       layout(items);
       $(".sort")
-        .text("Sort By New ")
+        .html("Sort By New&nbsp")
         .val("sortbynew")
         .append(counter);
       break;
