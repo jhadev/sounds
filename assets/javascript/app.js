@@ -228,7 +228,7 @@ const sortAll = event => {
       $(".start").empty();
       layout(items);
       $(".sort")
-        .html("Sort by Name&nbsp")
+        .html("Sort by Name &nbsp")
         .val("sortbyname")
         .append(counter);
       break;
@@ -237,7 +237,7 @@ const sortAll = event => {
       $(".start").empty();
       layout(items);
       $(".sort")
-        .html("Sort By New&nbsp")
+        .html("Sort By New &nbsp")
         .val("sortbynew")
         .append(counter);
       break;
