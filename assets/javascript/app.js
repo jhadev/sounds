@@ -21,7 +21,7 @@ class Sound {
 
 const sound1 = new Sound(
   1, //id of object
-  "Please Don't Go", //string to display on button
+  "please don't go", //string to display on button
   "pleasedontgo", //name must match mp3 filename
   "Butters", //character name to write to header
   1, //featured characters are set in order they appear on nav
@@ -30,7 +30,7 @@ const sound1 = new Sound(
 
 const sound2 = new Sound(
   2, //id
-  "Respect", //string to display on button
+  "respect", //string to display on button
   "respect", //name of file must match mp3 filename
   "Cartman", //character name to write to header
   2, //cartman is assigned a charId of 2 since he is featured in the navbar and will appear 2nd
@@ -99,11 +99,13 @@ const random = () => {
   item.play();
 };
 
-//func to capitalize first letter of displayName property of Sound object
-const capitalizeFirst = string => {
-  return string[0].toUpperCase() + string.slice(1);
-};
-
+//func to capitalize first letter of word of displayName property of Sound object just in case.
+const capitalizeEveryWord = str => {
+  return str.toLowerCase()
+    .split(' ')
+    .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+    .join(' ');
+}
 //PRINT HTML
 const layout = array => {
   array.forEach(item => {
@@ -133,7 +135,7 @@ const layout = array => {
         data: "play"
       })
       .html(
-        `<i class="fas fa-play-circle ml-2"></i> ${capitalizeFirst(
+        `<i class="fas fa-play-circle ml-2"></i> ${capitalizeEveryWord(
           displayName
         )}`
       )
