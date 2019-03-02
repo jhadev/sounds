@@ -12,7 +12,6 @@ button {
 
 .name {
   font-size: 14px !important;
-  margin-bottom: -1px;
 }
 
 .extra,
@@ -72,10 +71,6 @@ body {
 
 .spacer {
   flex: 1;
-}
-
-.nav-item {
-  margin-bottom: -1px;
 }
 
 .total-count,
