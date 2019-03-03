@@ -3,9 +3,9 @@
 Base to create a soundboard for anything.
 Uses Lodash, jQuery, Bootstrap, Animate.css, and FontAwesome.
 
-[Demo](https://jhadev.github.io/sounds/)
-[Screenshots](#screenshots)
-[Setup](#step-1)
+- [Demo](https://jhadev.github.io/sounds/)
+- [Screenshots](#screenshots)
+- [Setup](#step-1)
 
 ### Todo
 
@@ -79,3 +79,5 @@ I'm sure there is a bug. Or 2 or 3, but it does work. Enjoy!
 ![bigdark](https://user-images.githubusercontent.com/42519030/53685086-1a1f9c00-3ce4-11e9-9dc8-de5e54786efc.PNG)
 ![mobiledark](https://user-images.githubusercontent.com/42519030/53685091-302d5c80-3ce4-11e9-9431-a885435b84c5.PNG)
 ![mobilelight](https://user-images.githubusercontent.com/42519030/53685093-36233d80-3ce4-11e9-85af-2163da5552ff.PNG)
+
+[Back to top](#sounds)
