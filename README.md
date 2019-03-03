@@ -4,11 +4,8 @@ Base to create a soundboard for anything.
 Uses Lodash, jQuery, Bootstrap, Animate.css, and FontAwesome.
 
 [Demo](https://jhadev.github.io/sounds/)
-
-![biglight](https://user-images.githubusercontent.com/42519030/53685092-31f72000-3ce4-11e9-897e-60baaf4776d4.PNG)
-![bigdark](https://user-images.githubusercontent.com/42519030/53685086-1a1f9c00-3ce4-11e9-9dc8-de5e54786efc.PNG)
-![mobiledark](https://user-images.githubusercontent.com/42519030/53685091-302d5c80-3ce4-11e9-9431-a885435b84c5.PNG)
-![mobilelight](https://user-images.githubusercontent.com/42519030/53685093-36233d80-3ce4-11e9-85af-2163da5552ff.PNG)
+[Screenshots](#screenshots)
+[Setup](#step-1)
 
 ### Todo
 
@@ -75,3 +72,10 @@ Next, add each sound variable to push them into the items array.
 
 Repeat Steps 1 and 2 every time you add more sounds (without cloning the repo of course). Test everything out and enjoy. It is mobile responsive and includes a dark theme. By default the page is loaded sorting the sounds in alphabetical order by character name. It also badges the card header with NEW for the last 10 sounds added. You can sort by newest sound added and play a random sound.
 I'm sure there is a bug. Or 2 or 3, but it does work. Enjoy!
+
+### Screenshots
+
+![biglight](https://user-images.githubusercontent.com/42519030/53685092-31f72000-3ce4-11e9-897e-60baaf4776d4.PNG)
+![bigdark](https://user-images.githubusercontent.com/42519030/53685086-1a1f9c00-3ce4-11e9-9dc8-de5e54786efc.PNG)
+![mobiledark](https://user-images.githubusercontent.com/42519030/53685091-302d5c80-3ce4-11e9-9431-a885435b84c5.PNG)
+![mobilelight](https://user-images.githubusercontent.com/42519030/53685093-36233d80-3ce4-11e9-85af-2163da5552ff.PNG)

@@ -21,7 +21,7 @@ class Sound {
 
 const sound1 = new Sound(
   1, //id of object
-  "please don't go", //string to display on button
+  "please don't go", //string to display on button all lowercase to test capitalize function
   "pleasedontgo", //name must match mp3 filename
   "Butters", //character name to write to header
   1, //featured characters are set in order they appear on nav
@@ -30,7 +30,7 @@ const sound1 = new Sound(
 
 const sound2 = new Sound(
   2, //id
-  "respect", //string to display on button
+  "Respect", //string to display on button
   "respect", //name of file must match mp3 filename
   "Cartman", //character name to write to header
   2, //cartman is assigned a charId of 2 since he is featured in the navbar and will appear 2nd
@@ -105,7 +105,7 @@ const capitalizeEveryWord = str => {
     .split(' ')
     .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
     .join(' ');
-}
+};
 //PRINT HTML
 const layout = array => {
   array.forEach(item => {
