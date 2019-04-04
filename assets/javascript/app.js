@@ -101,29 +101,25 @@ const random = () => {
 
 //func to capitalize first letter of word of displayName property of Sound object just in case.
 const capitalizeEveryWord = str => {
-  return str.toLowerCase()
-    .split(' ')
-    .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-    .join(' ');
+  return str
+    .toLowerCase()
+    .split(" ")
+    .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+    .join(" ");
 };
 //PRINT HTML
 const layout = array => {
   array.forEach(item => {
-    const {
-      id,
-      name,
-      displayName,
-      character
-    } = item;
+    const { id, name, displayName, character } = item;
     const columnDiv = $("<div>").addClass("col-lg-4 col-md-6 col-12");
     const cardDiv = $("<div>");
     cardDiv.addClass("card shadow m-2").appendTo(columnDiv);
     const cardHeader = $("<div>");
-    id >= items.length - 10 ?
-      cardHeader.html(
-        `${character} <div id="new" class="ml-1 badge badge-pill badge-warning">NEW</div>`
-      ) :
-      cardHeader.text(character);
+    id >= items.length - 10
+      ? cardHeader.html(
+          `${character} <div id="new" class="ml-1 badge badge-pill badge-warning">NEW</div>`
+        )
+      : cardHeader.text(character);
     cardHeader.addClass("card-header").appendTo(cardDiv);
     const cardBody = $("<div>");
     cardBody.addClass("card-body").appendTo(cardDiv);
@@ -176,10 +172,7 @@ const genNavItems = () => {
   const characters = _.uniqBy(sortedItems, "character");
 
   for (let i = 0; i < characters.length; i++) {
-    const {
-      character,
-      charId
-    } = characters[i];
+    const { character, charId } = characters[i];
 
     $(".start-buttons").before(`
     <li>
@@ -209,16 +202,13 @@ const countAll = () => {
 countAll();
 
 const filterByCharacter = event => {
-  const {
-    id,
-    value
-  } = event.target;
+  const { id, value } = event.target;
   const itemsClone = [...items];
   const filteredArray = itemsClone.filter(item => value === item.character);
   const otherArray = itemsClone.filter(
     item => id === "Other" && item.charId > 4
   );
-  //match character names with navbar badge HTML for filtering. "Other" will auto match with characters not matched with these ids if their isFeatured property is set to false.
+  //match character names with navbar badge HTML for filtering. "Other" will auto match with characters not matched with these charIds are above 4
   $(".start").empty();
   if (id === "Other") {
     otherArray.sort(sortByCharacter);
@@ -234,9 +224,7 @@ const sortAll = event => {
     <span class="total-count badge badge-light">
       ${items.length}
     </span>`;
-  const {
-    value
-  } = event.target;
+  const { value } = event.target;
   switch (value) {
     case "sortbynew":
       items.sort(sortById);
@@ -262,14 +250,9 @@ const sortAll = event => {
 //STOP FUNC
 const stopSound = event => {
   $(event.target).addClass("pulse fast");
-  const {
-    value
-  } = event.target;
+  const { value } = event.target;
   items.forEach(sound => {
-    const {
-      name,
-      audio
-    } = sound;
+    const { name, audio } = sound;
     if (name === value) {
       audio.pause();
     }
@@ -282,14 +265,9 @@ const stopSound = event => {
 //PLAY FUNC
 const playSound = event => {
   $(event.target).addClass("pulse fast");
-  const {
-    value
-  } = event.target;
+  const { value } = event.target;
   items.forEach(sound => {
-    const {
-      name,
-      audio
-    } = sound;
+    const { name, audio } = sound;
     if (name === value) {
       audio.play();
     } else {
@@ -340,38 +318,19 @@ const checkTheme = () => {
 };
 
 //CLICK FUNCTION TO PLAY
-$(document).on("click", ".play", event => {
-  event.preventDefault();
-  playSound(event);
-});
+$(document).on("click", ".play", playSound);
 
 //CLICK FUNCTION TO PAUSE
-$(document).on("click", ".stop", event => {
-  event.preventDefault();
-  stopSound(event);
-});
+$(document).on("click", ".stop", stopSound);
 
 //CLICK FUNCTION TO SORT DOM
-$(document).on("click", ".sort", event => {
-  event.preventDefault();
-  sortAll(event);
-});
+$(document).on("click", ".sort", sortAll);
 
 //CLICK FUNCTION FOR RANDOM
-$(document).on("click", ".random", event => {
-  event.preventDefault();
-  random();
-  $("#navbarNav").collapse("hide");
-});
+$(document).on("click", ".random", random);
 
 //CLICK FUNCTION TO REBUILD DOM
-$(document).on("click", ".name", event => {
-  event.preventDefault();
-  filterByCharacter(event);
-});
+$(document).on("click", ".name", filterByCharacter);
 
 //CLICK FUNCTION FOR THEME
-$(document).on("click", ".theme", event => {
-  event.preventDefault();
-  checkTheme();
-});
+$(document).on("click", ".theme", checkTheme);
