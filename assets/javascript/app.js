@@ -168,11 +168,21 @@ const genNavItems = () => {
     return 0;
   });
 
-  //call lodash to remove dupes
-  const characters = _.uniqBy(sortedItems, "character");
+  //return new array of only with character names and ids
+  let characters = sortedItems.map(character => {
+    return { character: character.character, charId: character.charId };
+  });
 
-  for (let i = 0; i < characters.length; i++) {
-    const { character, charId } = characters[i];
+  //filter out duplicates by character name
+  characters = characters.filter((charObj, index) => {
+    return (
+      characters.map(mapObj => mapObj.character).indexOf(charObj.character) ===
+      index
+    );
+  });
+
+  for (let eachCharacter of characters) {
+    const { character, charId } = eachCharacter;
 
     $(".start-buttons").before(`
     <li>
@@ -208,7 +218,7 @@ const filterByCharacter = event => {
   const otherArray = itemsClone.filter(
     item => id === "Other" && item.charId > 4
   );
-  //match character names with navbar badge HTML for filtering. "Other" will auto match with characters not matched with these charIds are above 4
+  //match character names with navbar badge HTML for filtering. "Other" will match with characters not matched with these charIds are above 4
   $(".start").empty();
   if (id === "Other") {
     otherArray.sort(sortByCharacter);
@@ -265,6 +275,7 @@ const stopSound = event => {
 //PLAY FUNC
 const playSound = event => {
   $(event.target).addClass("pulse fast");
+
   const { value } = event.target;
   items.forEach(sound => {
     const { name, audio } = sound;
@@ -275,7 +286,7 @@ const playSound = event => {
     }
   });
   window.setTimeout(() => {
-    $(event.target).removeClass("pulse fast");
+    $(event.target).removeClass("pulse fast stop");
   }, 2000);
 };
 
@@ -326,11 +337,11 @@ $(document).on("click", ".stop", stopSound);
 //CLICK FUNCTION TO SORT DOM
 $(document).on("click", ".sort", sortAll);
 
-//CLICK FUNCTION FOR RANDOM
-$(document).on("click", ".random", random);
-
 //CLICK FUNCTION TO REBUILD DOM
 $(document).on("click", ".name", filterByCharacter);
 
+//CLICK FUNCTION FOR RANDOM
+$(".random").on("click", random);
+
 //CLICK FUNCTION FOR THEME
-$(document).on("click", ".theme", checkTheme);
+$(".theme").on("click", checkTheme);

@@ -1,7 +1,7 @@
 # sounds
 
 Base to create a soundboard for anything.
-Uses Lodash, jQuery, Bootstrap, Animate.css, and FontAwesome.
+Uses jQuery, Bootstrap, Animate.css, and FontAwesome.
 
 - [Demo](https://jhadev.github.io/sounds/)
 - [Screenshots](#screenshots)
